@@ -1,0 +1,69 @@
+﻿@model Calc.Models.CalcModel
+
+@{
+    ViewData["Title"] = "Калькулятор";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Калькулятор</h2>
+
+<form method="post">
+
+    <div>
+        <label>Первое число:</label>
+
+        <input name="Operand1" class="textBoxStyle" />
+        @Html.ValidationMessageFor(m => m.Operand1)
+    </div>
+
+
+
+
+    <div>
+        <label>Операция:</label>
+
+        <select name="Operation">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+    </div>
+
+
+
+
+    <div>
+        <label>Второе число:</label>
+
+        <input name="Operand2" class="textBoxStyle" />
+        @Html.ValidationMessageFor(m => m.Operand2)
+    </div>
+
+
+
+
+    <button type="submit" name="button" value="calc">Вычислить</button>
+    <button type="submit" name="button" value="clear">Очистить</button>
+
+</form>
+
+<hr />
+
+<h3>Результат: @Model.Result</h3>
+
+@if (Model != null)
+{
+    if (Model.Result == ViewBag.CheckValue)
+    {
+<p style="color:green;">Результат равен заданному значению</p>
+    }
+    else
+    {
+<p style="color:red;">Результат НЕ равен заданному значению</p>
+    }
+}
+
+@Html.ActionLink("Перейти к результату", "Result", "Calc")
+
+
